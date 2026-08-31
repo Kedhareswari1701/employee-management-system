@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave &amp; Attendance Management API</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; color: #1f2937; }
+        h1 { color: #2563eb; }
+        code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+        .endpoint { background: #f9fafb; border-left: 4px solid #2563eb; padding: 10px 14px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Leave &amp; Attendance Management System</h1>
+    <p>A role-based backend for managing employee attendance and leave requests.</p>
+
+    <h2>API Endpoints</h2>
+    <div class="endpoint"><strong>POST</strong> <code>/api/token/</code> — obtain JWT (username/password)</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/token/refresh/</code> — refresh JWT</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/auth/register/</code> — register an employee</div>
+    <div class="endpoint"><strong>GET/PUT/PATCH</strong> <code>/api/users/me/</code> — current user profile</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/users/change_password/</code> — change password</div>
+    <div class="endpoint"><strong>GET</strong> <code>/api/departments/</code> — list departments</div>
+    <div class="endpoint"><strong>GET/POST</strong> <code>/api/attendance/</code> — attendance records</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/attendance/check_in/</code> — check in</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/attendance/check_out/</code> — check out</div>
+    <div class="endpoint"><strong>GET</strong> <code>/api/attendance/summary/</code> — attendance summary</div>
+    <div class="endpoint"><strong>GET/POST</strong> <code>/api/leaves/types/</code> — leave types</div>
+    <div class="endpoint"><strong>GET/POST</strong> <code>/api/leaves/requests/</code> — leave requests</div>
+    <div class="endpoint"><strong>POST</strong> <code>/api/leaves/requests/{id}/review/</code> — approve/reject</div>
+    <div class="endpoint"><strong>GET</strong> <code>/api/leaves/balances/</code> — leave balances</div>
+
+    <p>Admin: <code>/admin/</code> | Demo users: admin/admin12345, manager/manager12345, john/employee12345</p>
+</body>
+</html>
