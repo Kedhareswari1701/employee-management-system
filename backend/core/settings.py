@@ -154,6 +154,7 @@ EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
@@ -164,25 +165,42 @@ LOGGING = {
             'style': '{',
         },
     },
+
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'app.log',
             'formatter': 'verbose',
         },
     },
+
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
     },
+
     'loggers': {
-        'core': {
-            'handlers': ['console', 'file'],
+        'django': {
+            'handlers': ['console'],
             'level': 'INFO',
+            'propagate': False,
+        },
+
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+
+        'django.server': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+
+        'core': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
         },
     },
 }
