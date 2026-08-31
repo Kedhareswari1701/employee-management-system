@@ -4,6 +4,7 @@ Django settings for core project.
 Environment based configuration using python-decouple.
 Uses SQLite by default; switch to PostgreSQL via .env for production.
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
@@ -15,6 +16,18 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-!replace-me-in-produc
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
+
+# Render sets RENDER=true and RENDER_EXTERNAL_HOSTNAME=<service>.onrender.com
+# on every service. Auto-allow the assigned hostname so requests to it are
+# not rejected with 400 Bad Request.
+if os.environ.get('RENDER', '') == 'true':
+    render_host = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')
+    if render_host and render_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(render_host)
+    ALLOWED_HOSTS.extend([
+        'localhost',
+        '127.0.0.1',
+    ])
 
 INSTALLED_APPS = [
     'django.contrib.admin',

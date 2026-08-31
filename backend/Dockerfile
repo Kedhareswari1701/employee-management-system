@@ -15,6 +15,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Render ignores EXPOSE and instead injects the listen port via $PORT,
+# which gunicorn.conf.py reads at runtime.
 EXPOSE 8000
 
 # Collect static files and run migrations before starting the server
